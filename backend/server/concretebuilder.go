@@ -61,6 +61,11 @@ func (b *ConcreteServerBuilder) SetMiddlewares() ServerBuilder {
 	return b
 }
 
+func (b *ConcreteServerBuilder) SetReleaseMode() ServerBuilder {
+	gin.SetMode(gin.ReleaseMode)
+	return b
+}
+
 func (b *ConcreteServerBuilder) SetRoutes() ServerBuilder {
 	docs.SwaggerInfo.BasePath = "/v1"
 	v1 := b.router.Group("/v1")

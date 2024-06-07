@@ -35,6 +35,7 @@ func main() {
 		cfg.SMTPort)
 
 	srv := server.NewServerBuilder(appCtx).
+		SetReleaseMode().
 		SetMiddlewares().
 		SetRoutes().
 		Build()
