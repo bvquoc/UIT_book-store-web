@@ -16,6 +16,7 @@ var (
 type AppConfig struct {
 	Port       string
 	Env        string
+	LogDir     string
 	StaticPath string
 	ServerHost string
 	DBUsername string
@@ -42,6 +43,7 @@ func LoadConfig() *AppConfig {
 			port, _ := strconv.Atoi(env["SMTPORT"])
 			instance.Port = env["PORT"]
 			instance.Env = env["GO_ENV"]
+			instance.LogDir = env["LOG_DIR"] + "/"
 			instance.StaticPath = env["STATIC_PATH"]
 			instance.ServerHost = env["SERVER_HOST"]
 			instance.DBUsername = env["DB_USERNAME"]

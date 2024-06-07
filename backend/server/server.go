@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"book-store-management-backend/common"
 	"book-store-management-backend/component/appctx"
 	"book-store-management-backend/middleware"
 	factory "book-store-management-backend/server/factory"
@@ -17,8 +18,18 @@ type ConcreteServerBuilder struct {
 }
 
 func NewServerBuilder(appCtx appctx.AppContext) *ConcreteServerBuilder {
+	logFile, err := common.OpenLogFile(appCtx.GetLogDir())
+	if err != nil {
+		log.Fatalf("Failed to open log file: %v", err)
+	}
+	gin.DefaultWriter = logFile
+	gin.DefaultErrorWriter = logFile
+	router := gin.New()
+	router.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+		Output: gin.DefaultWriter, // Direct log output to file
+	}))
 	return &ConcreteServerBuilder{
-		router: gin.New(),
+		router: router,
 		appCtx: appCtx,
 	}
 }

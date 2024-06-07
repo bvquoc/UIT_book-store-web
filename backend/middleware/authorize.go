@@ -6,9 +6,9 @@ import (
 	"book-store-management-backend/component/tokenprovider/jwt"
 	"book-store-management-backend/module/user/userstore"
 	"errors"
-	"fmt"
-	"github.com/gin-gonic/gin"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Requester interface {
@@ -22,8 +22,8 @@ type Requester interface {
 func ErrWrongAuthHeader(err error) *common.AppError {
 	return common.NewCustomError(
 		err,
-		fmt.Sprintf("wrong authen header"),
-		fmt.Sprintf("ErrWrongAuthHeader"),
+		"wrong authen header",
+		"ErrWrongAuthHeader",
 	)
 }
 

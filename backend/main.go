@@ -25,6 +25,7 @@ func main() {
 
 	appCtx := appctx.NewAppContext(
 		db,
+		cfg.LogDir,
 		cfg.SecretKey,
 		cfg.StaticPath,
 		cfg.ServerHost,
